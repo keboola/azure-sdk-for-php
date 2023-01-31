@@ -76,7 +76,7 @@ class ServiceRestProxyTestBase extends RestProxyTestBase
         $this->connectionString = TestResources::getWindowsAzureStorageServicesConnectionString();
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->_createDefaultProperties();
@@ -104,7 +104,7 @@ class ServiceRestProxyTestBase extends RestProxyTestBase
         $this->propertiesChanged = true;
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
 

@@ -50,7 +50,7 @@ class WrapTokenManagerTest extends ServiceRestProxyTestBase
 {
     private $_wrapRestProxy;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->skipIfEmulated();
 
@@ -100,7 +100,7 @@ class WrapTokenManagerTest extends ServiceRestProxyTestBase
      */
     public function testGetAccessTokenFailedWithInvalidWrapUri()
     {
-        $this->setExpectedException(get_class(
+        $this->expectException(get_class(
             new \InvalidArgumentException(''))
         );
         $settings = ServiceBusSettings::createFromConnectionString(
@@ -128,7 +128,7 @@ class WrapTokenManagerTest extends ServiceRestProxyTestBase
      */
     public function testGetAccessTokenFailedWithInvalidUserName()
     {
-        $this->setExpectedException(get_class(
+        $this->expectException(get_class(
             new ServiceException(''))
         );
         $settings = ServiceBusSettings::createFromConnectionString(
@@ -156,7 +156,7 @@ class WrapTokenManagerTest extends ServiceRestProxyTestBase
      */
     public function testGetAccessTokenFailedWithInvalidPassword()
     {
-        $this->setExpectedException(get_class(
+        $this->expectException(get_class(
             new ServiceException(''))
         );
         $settings = ServiceBusSettings::createFromConnectionString(

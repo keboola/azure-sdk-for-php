@@ -48,7 +48,7 @@ class TableServiceRestProxyTestBase extends ServiceRestProxyTestBase
      */
     protected $tableRestProxy;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->tableRestProxy = $this->builder->createTableService($this->connectionString);
@@ -77,7 +77,7 @@ class TableServiceRestProxyTestBase extends ServiceRestProxyTestBase
         }
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
 

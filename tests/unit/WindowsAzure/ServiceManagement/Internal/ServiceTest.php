@@ -174,8 +174,8 @@ class ServiceTest extends TestCase
      */
     public function testSerializeWithInvalidSerializer()
     {
-        // Setup
-        $this->setExpectedException('\InvalidArgumentException', Resources::UNKNOWN_SRILZER_MSG);
+        $this->expectExceptionMessage(Resources::UNKNOWN_SRILZER_MSG);
+        $this->expectException('\InvalidArgumentException');
         $service = new Service();
 
         // Test

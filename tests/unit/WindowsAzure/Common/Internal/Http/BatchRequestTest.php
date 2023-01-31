@@ -66,7 +66,7 @@ class BatchRequestTest extends TestCase
         $resultHeader = $batchReq->getHeaders();
 
         // Assert
-        $this->assertContains($body, $resultBody);
+        $this->assertStringContainsString($body, $resultBody);
     }
 
     /**

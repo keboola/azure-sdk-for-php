@@ -111,7 +111,8 @@ class TokenRestrictionTemplateSerializerTest extends TestCase
     {
         // Setup
         $tokenTemplate = '<TokenRestrictionTemplate xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/TokenRestrictionTemplate/v1"><AlternateVerificationKeys><TokenVerificationKey i:type="SymmetricVerificationKey"><KeyValue>GG07fDPZ+HMD2vcoknMqYjEJMb7LSq8zUmdCYMvRCevnQK//ilbhODO/FydMrHiwZGmI6XywvOOU7SSzRPlI3Q==</KeyValue></TokenVerificationKey></AlternateVerificationKeys><Audience>http://sampleaudience/</Audience><PrimaryVerificationKey i:type="SymmetricVerificationKey"><KeyValue>2OvxltHKwILn5PCRD8H+63sK98LBs1yF+ZdZbwzmToWYm29pLyqIMuCvMRGpLOv5DYh3NmpzWMAciu4ncW8VTg==</KeyValue></PrimaryVerificationKey><RequiredClaims><TokenClaim><ClaimType>urn:microsoft:azure:mediaservices:contentkeyidentifier</ClaimType><ClaimValue i:nil="true" /></TokenClaim><TokenClaim><ClaimType>urn:myservice:claims:rental</ClaimType><ClaimValue>true</ClaimValue></TokenClaim></RequiredClaims></TokenRestrictionTemplate>';
-        $this->setExpectedException('RuntimeException', "The TokenRestrictionTemplate must contains an 'Issuer' element");
+        $this->expectExceptionMessage("The TokenRestrictionTemplate must contains an 'Issuer' element");
+        $this->expectException('RuntimeException');
 
         // Test
         TokenRestrictionTemplateSerializer::deserialize($tokenTemplate);
@@ -124,7 +125,8 @@ class TokenRestrictionTemplateSerializerTest extends TestCase
     {
         // Setup
         $tokenTemplate = '<TokenRestrictionTemplate xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/TokenRestrictionTemplate/v1"><AlternateVerificationKeys><TokenVerificationKey i:type="SymmetricVerificationKey"><KeyValue>GG07fDPZ+HMD2vcoknMqYjEJMb7LSq8zUmdCYMvRCevnQK//ilbhODO/FydMrHiwZGmI6XywvOOU7SSzRPlI3Q==</KeyValue></TokenVerificationKey></AlternateVerificationKeys><Issuer>http://sampleissuerurl/</Issuer><PrimaryVerificationKey i:type="SymmetricVerificationKey"><KeyValue>2OvxltHKwILn5PCRD8H+63sK98LBs1yF+ZdZbwzmToWYm29pLyqIMuCvMRGpLOv5DYh3NmpzWMAciu4ncW8VTg==</KeyValue></PrimaryVerificationKey><RequiredClaims><TokenClaim><ClaimType>urn:microsoft:azure:mediaservices:contentkeyidentifier</ClaimType><ClaimValue i:nil="true" /></TokenClaim><TokenClaim><ClaimType>urn:myservice:claims:rental</ClaimType><ClaimValue>true</ClaimValue></TokenClaim></RequiredClaims></TokenRestrictionTemplate>';
-        $this->setExpectedException('RuntimeException', "The TokenRestrictionTemplate must contains an 'Audience' element");
+        $this->expectExceptionMessage("The TokenRestrictionTemplate must contains an 'Audience' element");
+        $this->expectException('RuntimeException');
 
         // Test
         TokenRestrictionTemplateSerializer::deserialize($tokenTemplate);
@@ -137,7 +139,8 @@ class TokenRestrictionTemplateSerializerTest extends TestCase
     {
         // Setup
         $tokenTemplate = '<TokenRestrictionTemplate xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/TokenRestrictionTemplate/v1"><Audience>http://sampleaudience/</Audience><Issuer>http://sampleissuerurl/</Issuer></TokenRestrictionTemplate>';
-        $this->setExpectedException('RuntimeException', 'Both PrimaryVerificationKey and OpenIdConnectDiscoveryDocument are undefined');
+        $this->expectExceptionMessage('Both PrimaryVerificationKey and OpenIdConnectDiscoveryDocument are undefined');
+        $this->expectException('RuntimeException');
 
         // Test
         TokenRestrictionTemplateSerializer::deserialize($tokenTemplate);

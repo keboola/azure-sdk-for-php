@@ -273,7 +273,7 @@ class HttpClientTest extends TestCase
         $channel->setExpectedStatusCode('200');
         $channel->setBody('This is body');
         $channel->setMethod('PUT');
-        $this->setExpectedException(get_class(new ServiceException('405')));
+        $this->expectException(get_class(new ServiceException('405')));
 
         // Test
         $channel->send([], $url);
@@ -299,7 +299,7 @@ class HttpClientTest extends TestCase
         // Assert
         $this->assertArrayHasKey($expectedHeader, $channel->getHeaders());
         $this->assertTrue(isset($response));
-        $this->assertContains($expectedResponseSubstring, $response);
+        $this->assertStringContainsString($expectedResponseSubstring, $response);
     }
 
     /**
@@ -326,8 +326,8 @@ class HttpClientTest extends TestCase
         $this->assertArrayHasKey($expectedHeader1, $channel->getHeaders());
         $this->assertArrayHasKey($expectedHeader2, $channel->getHeaders());
         $this->assertTrue(isset($response));
-        $this->assertContains($expectedResponseSubstring1, $response);
-        $this->assertContains($expectedResponseSubstring2, $response);
+        $this->assertStringContainsString($expectedResponseSubstring1, $response);
+        $this->assertStringContainsString($expectedResponseSubstring2, $response);
     }
 
     /**
@@ -339,7 +339,7 @@ class HttpClientTest extends TestCase
         $channel = new HttpClient();
         $url = new Url('http://example.com/');
         $channel->setExpectedStatusCode('201');
-        $this->setExpectedException(get_class(new ServiceException('200')));
+        $this->expectException(get_class(new ServiceException('200')));
 
         // Test
         $channel->send([], $url);
@@ -487,8 +487,7 @@ class HttpClientTest extends TestCase
      */
     public function testThrowIfError()
     {
-        // Setup
-        $this->setExpectedException(get_class(new ServiceException('200')));
+        $this->expectException(get_class(new ServiceException('200')));
 
         HttpClient::throwIfError(200, null, null, [10]);
     }

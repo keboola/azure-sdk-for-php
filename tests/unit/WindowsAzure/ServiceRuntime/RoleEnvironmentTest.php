@@ -56,8 +56,7 @@ class RoleEnvironmentTest extends TestCase
         // Setup
         putenv('WaRuntimeEndpoint=');
 
-        // Test
-        $this->setExpectedException(get_class(
+        $this->expectException(get_class(
             new RoleEnvironmentNotAvailableException()
         ));
 

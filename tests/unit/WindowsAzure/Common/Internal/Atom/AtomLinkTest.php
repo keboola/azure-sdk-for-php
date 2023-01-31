@@ -230,8 +230,7 @@ class AtomLinkTest extends TestCase
      */
     public function testParseXmlInvalidArgument()
     {
-        // Setup
-        $this->setExpectedException(get_class(new \InvalidArgumentException()));
+        $this->expectException(get_class(new \InvalidArgumentException()));
         $atomLink = new AtomLink();
 
         // Test

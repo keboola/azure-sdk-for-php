@@ -48,7 +48,7 @@ class ServiceBusIntegrationTest extends IntegrationTestBase
     private $RECEIVE_AND_DELETE_5_SECONDS;
     private $PEEK_LOCK_5_SECONDS;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->RECEIVE_AND_DELETE_5_SECONDS = new ReceiveMessageOptions();

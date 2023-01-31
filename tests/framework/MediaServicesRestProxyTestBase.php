@@ -85,7 +85,7 @@ class MediaServicesRestProxyTestBase extends ServiceRestProxyTestBase
 
     const LARGE_FILE_SIZE_MB = 7;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->skipIfEmulated();
         parent::setUp();
@@ -308,7 +308,7 @@ class MediaServicesRestProxyTestBase extends ServiceRestProxyTestBase
         return $jobTempl;
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
 

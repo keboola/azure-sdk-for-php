@@ -35,7 +35,7 @@ class IntegrationTestBase extends ServiceBusRestProxyTestBase
 {
     private static $isOneTimeSetup = false;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $fiddlerFilter = new FiddlerFilter();

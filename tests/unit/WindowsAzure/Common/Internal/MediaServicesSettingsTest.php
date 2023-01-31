@@ -71,8 +71,7 @@ class MediaServicesSettingsTest extends TestCase
         $endpointUri = 'http://valid.url/';
         $tokenProvider = null;
 
-        // Assert
-        $this->setExpectedException(\InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         // Test
         $settings = new MediaServicesSettings($endpointUri, $tokenProvider);
@@ -87,8 +86,7 @@ class MediaServicesSettingsTest extends TestCase
         $endpointUri = null;
         $tokenProvider = null;
 
-        // Assert
-        $this->setExpectedException(\RuntimeException::class);
+        $this->expectException(\RuntimeException::class);
 
         // Test
         $settings = new MediaServicesSettings($endpointUri, $tokenProvider);

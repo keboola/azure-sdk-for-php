@@ -161,7 +161,7 @@ class BatchResponseTest extends TestCase
             ['content-type' => ['boundary=batch_956c339e-1ef0-4443-9276-68c12888a3f7']],
             $encodedBody);
 
-        $this->setExpectedException('WindowsAzure\Common\ServiceException');
+        $this->expectException('WindowsAzure\Common\ServiceException');
 
         // Test
         $batchResp = new BatchResponse($response, $batchReq);

@@ -2077,7 +2077,7 @@ class MediaServicesRestProxyTest extends MediaServicesRestProxyTestBase
         $result = $this->mediaServicesWrapper->getKeyDeliveryUrl($contentKey, ContentKeyDeliveryType::BASELINE_HTTP);
 
         // Assert
-        $this->assertRegExp('/keydelivery/', $result);
+        $this->assertMatchesRegularExpression('/keydelivery/', $result);
     }
 
     public function testCreateContentKeyAuthorizationPolicyOptionWithTokenRestrictions()

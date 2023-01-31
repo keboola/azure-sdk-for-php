@@ -53,7 +53,7 @@ class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
      */
     private $blobRestProxy;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->blobRestProxy = $this->builder->createBlobService($this->connectionString);
@@ -154,7 +154,7 @@ class BlobServiceRestProxyTestBase extends ServiceRestProxyTestBase
         return $result;
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
 

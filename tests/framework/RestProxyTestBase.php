@@ -66,6 +66,7 @@ class RestProxyTestBase extends TestCase
 
     public function __construct()
     {
+        parent::__construct();
         $this->xmlSerializer = new XmlSerializer();
         $this->builder = new ServicesBuilder();
         Logger::setLogFile('C:\log.txt');
@@ -73,7 +74,7 @@ class RestProxyTestBase extends TestCase
         // Enable PHP asserts
         assert_options(ASSERT_ACTIVE, 1);
         assert_options(ASSERT_WARNING, 0);
-        assert_options(ASSERT_QUIET_EVAL, 1);
+//        assert_options(ASSERT_QUIET_EVAL, 1);
         assert_options(ASSERT_CALLBACK, 'Tests\Framework\RestProxyTestBase::assertHandler');
     }
 
@@ -82,7 +83,7 @@ class RestProxyTestBase extends TestCase
         $this->restProxy = $serviceRestProxy;
     }
 
-    protected function onNotSuccessfulTest(\Exception $e)
+    protected function onNotSuccessfulTest(\Throwable $e): void
     {
         parent::onNotSuccessfulTest($e);
 

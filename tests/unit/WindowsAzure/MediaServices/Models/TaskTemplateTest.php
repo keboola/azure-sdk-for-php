@@ -58,7 +58,7 @@ class TaskTemplateTest extends TestCase
         // Assert
         $this->assertEquals($numberOfInputAssets, $taskTemplate->getNumberofInputAssets());
         $this->assertEquals($numberOfOutputAssets, $taskTemplate->getNumberofOutputAssets());
-        $this->assertContains('nb:ttid:UUID:', $taskTemplate->getId());
+        $this->assertStringContainsString('nb:ttid:UUID:', $taskTemplate->getId());
     }
 
     /**
