@@ -1,0 +1,21 @@
+name: Test
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      AZURE_STORAGE_CONNECTION_STRING: '"UseDevelopmentStorage=true;"'
+    strategy:
+      matrix:
+        php-versions:
+          - '7.4'
+          - '8.0'
+          - '8.1'
+    steps:
+      - uses: actions/checkout@v2
+      - run: composer install --prefer-dist -o
+      - run: ./vendor/bin/phpunit -c phpunit.local.xml.dist
