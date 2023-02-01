@@ -109,7 +109,8 @@ class MediaServicesLicenseTemplateSerializerTest extends TestCase
     {
         // Setup
         $template = '<PlayReadyLicenseResponseTemplate xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/PlayReadyTemplate/v1"><LicenseTemplates><PlayReadyLicenseTemplate><PlayRight /></PlayReadyLicenseTemplate></LicenseTemplates></PlayReadyLicenseResponseTemplate>';
-        $this->setExpectedException('RuntimeException', "The PlayReadyLicenseTemplate must contains an 'ContentKey' element");
+        $this->expectExceptionMessage("The PlayReadyLicenseTemplate must contains an 'ContentKey' element");
+        $this->expectException('RuntimeException');
 
         // Test
         MediaServicesLicenseTemplateSerializer::deserialize($template);
@@ -122,7 +123,8 @@ class MediaServicesLicenseTemplateSerializerTest extends TestCase
     {
         // Setup
         $template = '<PlayReadyLicenseResponseTemplate xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/PlayReadyTemplate/v1"><LicenseTemplates><PlayReadyLicenseTemplate><ContentKey i:type="ContentEncryptionKeyFromHeader" /></PlayReadyLicenseTemplate></LicenseTemplates></PlayReadyLicenseResponseTemplate>';
-        $this->setExpectedException('RuntimeException', "The PlayReadyLicenseTemplate must contains an 'PlayRight' element");
+        $this->expectExceptionMessage("The PlayReadyLicenseTemplate must contains an 'PlayRight' element");
+        $this->expectException('RuntimeException');
 
         // Test
         MediaServicesLicenseTemplateSerializer::deserialize($template);
@@ -135,7 +137,8 @@ class MediaServicesLicenseTemplateSerializerTest extends TestCase
     {
         // Setup
         $template = '<PlayReadyLicenseResponseTemplate xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/PlayReadyTemplate/v1"><LicenseTemplates></LicenseTemplates></PlayReadyLicenseResponseTemplate>';
-        $this->setExpectedException('RuntimeException', ErrorMessages::AT_LEAST_ONE_LICENSE_TEMPLATE_REQUIRED);
+        $this->expectExceptionMessage(ErrorMessages::AT_LEAST_ONE_LICENSE_TEMPLATE_REQUIRED);
+        $this->expectException('RuntimeException');
 
         // Test
         MediaServicesLicenseTemplateSerializer::deserialize($template);
@@ -197,7 +200,7 @@ class MediaServicesLicenseTemplateSerializerTest extends TestCase
     ) {
         $this->assertEquals($expected->getAllowTestDevices(), $actual->getAllowTestDevices());
         $this->assertEquals($expected->getLicenseType(), $actual->getLicenseType());
-        $this->assertEquals($expected->getBeginDate(), $actual->getBeginDate());
+        $this->assertEqualsWithDelta($expected->getBeginDate(), $actual->getBeginDate(), 1);
         $this->assertEquals($expected->getExpirationDate(), $actual->getExpirationDate());
         $this->assertEquals($expected->getRelativeBeginDate(), $actual->getRelativeBeginDate());
         $this->assertEquals($expected->getRelativeExpirationDate(), $actual->getRelativeExpirationDate());

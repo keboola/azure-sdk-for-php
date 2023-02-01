@@ -44,7 +44,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ServiceManagementSettingsTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $property = new \ReflectionProperty('WindowsAzure\Common\Internal\ServiceManagementSettings', 'isInitialized');
         $property->setAccessible(true);
@@ -129,7 +129,8 @@ class ServiceManagementSettingsTest extends TestCase
         // Setup
         $connectionString = "CertificatePath=C:\path_to_my_cert.pem;ServiceManagementEndpoint=http://myprivatedns.com";
         $expectedMsg = sprintf(Resources::MISSING_CONNECTION_STRING_SETTINGS, $connectionString);
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectExceptionMessage($expectedMsg);
+        $this->expectException('\RuntimeException');
 
         // Test
         ServiceManagementSettings::createFromConnectionString($connectionString);
@@ -206,7 +207,8 @@ class ServiceManagementSettingsTest extends TestCase
             $invalidKey,
             implode("\n", ['SubscriptionID', 'CertificatePath', 'ServiceManagementEndpoint'])
         );
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectExceptionMessage($expectedMsg);
+        $this->expectException('\RuntimeException');
 
         // Test
         ServiceManagementSettings::createFromConnectionString($connectionString);

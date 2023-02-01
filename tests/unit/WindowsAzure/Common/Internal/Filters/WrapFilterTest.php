@@ -51,7 +51,7 @@ class WrapFilterTest extends ServiceRestProxyTestBase
 {
     private $_wrapRestProxy;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->skipIfEmulated();
 

@@ -93,7 +93,6 @@ class ServicesBuilderTest extends ServiceRestProxyTestBase
     {
         // Setup
         $builder = new ServicesBuilder();
-
         // Test
         $tableRestProxy = $builder->createTableService(TestResources::getWindowsAzureStorageServicesConnectionString());
 

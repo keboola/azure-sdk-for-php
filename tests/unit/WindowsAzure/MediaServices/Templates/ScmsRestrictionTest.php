@@ -67,7 +67,8 @@ class ScmsRestrictionTest extends TestCase
     {
         // Setup
         $payload = 5;
-        $this->setExpectedException('InvalidArgumentException', ErrorMessages::INVALID_TWO_BIT_CONFIGURATION_DATA);
+        $this->expectExceptionMessage(ErrorMessages::INVALID_TWO_BIT_CONFIGURATION_DATA);
+        $this->expectException('InvalidArgumentException');
         new ScmsRestriction($payload);
     }
 

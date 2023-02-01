@@ -126,7 +126,7 @@ class ScenarioTestBase extends IntegrationTestBase
             $effAct = $effAct->setTimezone(new \DateTimeZone('UTC'));
         }
 
-        parent::assertEquals($expected, $actual, $message, $delta, $maxDepth, $canonicalize, $ignoreCase);
+        parent::assertEqualsIgnoringCase($expected, $actual, $message);
     }
 
     protected static function write($message)

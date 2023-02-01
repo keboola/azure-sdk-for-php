@@ -62,7 +62,7 @@ class ServiceManagementRestProxyTestBase extends ServiceRestProxyTestBase
      */
     protected $serviceManagementRestProxy;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->skipIfEmulated();
         $this->skipIfOSX();
@@ -362,7 +362,7 @@ class ServiceManagementRestProxyTestBase extends ServiceRestProxyTestBase
         }
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
 
@@ -398,9 +398,9 @@ class ServiceManagementRestProxyTestBase extends ServiceRestProxyTestBase
         $this->assertEquals(false, $deployment->getLocked());
         $this->assertEquals(false, $deployment->getRollbackAllowed());
         $this->assertInstanceOf('WindowsAzure\ServiceManagement\Models\UpgradeStatus', $deployment->getUpgradeStatus());
-        $this->assertInternalType('array', $deployment->getRoleInstanceList());
-        $this->assertInternalType('array', $deployment->getRoleList());
-        $this->assertInternalType('array', $deployment->getInputEndpointList());
+        $this->assertIsArray($deployment->getRoleInstanceList());
+        $this->assertIsArray($deployment->getRoleList());
+        $this->assertIsArray($deployment->getInputEndpointList());
 
         // Assert the deployment upgrade status
         $this->assertEquals(0, $deployment->getUpgradeStatus()->getCurrentUpgradeDomain());

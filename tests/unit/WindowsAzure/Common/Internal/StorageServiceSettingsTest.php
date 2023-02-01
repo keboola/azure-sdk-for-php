@@ -47,7 +47,7 @@ class StorageServiceSettingsTest extends TestCase
 {
     private $_accountName = 'mytestaccount';
 
-    public function setUp()
+    public function setUp(): void
     {
         $property = new \ReflectionProperty('WindowsAzure\Common\Internal\StorageServiceSettings', 'isInitialized');
         $property->setAccessible(true);
@@ -152,7 +152,8 @@ class StorageServiceSettingsTest extends TestCase
             $invalidValue,
             implode("\n", ['true'])
         );
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectExceptionMessage($expectedMsg);
+        $this->expectException('\RuntimeException');
 
         // Test
         StorageServiceSettings::createFromConnectionString($connectionString);
@@ -177,7 +178,7 @@ class StorageServiceSettingsTest extends TestCase
     {
         // Setup
         $connectionString = '';
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException('\InvalidArgumentException');
 
         // Test
         StorageServiceSettings::createFromConnectionString($connectionString);
@@ -470,7 +471,8 @@ class StorageServiceSettingsTest extends TestCase
         $expectedKey = TestResources::KEY4;
         $connectionString = "AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedMsg = sprintf(Resources::MISSING_CONNECTION_STRING_SETTINGS, $connectionString);
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectExceptionMessage($expectedMsg);
+        $this->expectException('\RuntimeException');
 
         // Test
         StorageServiceSettings::createFromConnectionString($connectionString);
@@ -497,7 +499,8 @@ class StorageServiceSettingsTest extends TestCase
         $expectedKey = TestResources::KEY4;
         $connectionString = "DefaultEndpointsProtocol=http;AccountKey=$expectedKey";
         $expectedMsg = sprintf(Resources::MISSING_CONNECTION_STRING_SETTINGS, $connectionString);
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectExceptionMessage($expectedMsg);
+        $this->expectException('\RuntimeException');
 
         // Test
         StorageServiceSettings::createFromConnectionString($connectionString);
@@ -525,7 +528,8 @@ class StorageServiceSettingsTest extends TestCase
         $invalidKey = '__A&*INVALID-@Key';
         $connectionString = "DefaultEndpointsProtocol=http;AccountName=$expectedName;AccountKey=$invalidKey";
         $expectedMsg = sprintf(Resources::INVALID_ACCOUNT_KEY_FORMAT, $invalidKey);
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectExceptionMessage($expectedMsg);
+        $this->expectException('\RuntimeException');
 
         // Test
         StorageServiceSettings::createFromConnectionString($connectionString);
@@ -661,7 +665,8 @@ class StorageServiceSettingsTest extends TestCase
         $expectedKey = TestResources::KEY4;
         $connectionString = "AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedMsg = sprintf(Resources::MISSING_CONNECTION_STRING_SETTINGS, $connectionString);
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectExceptionMessage($expectedMsg);
+        $this->expectException('\RuntimeException');
 
         // Test
         $actual = StorageServiceSettings::createFromConnectionString($connectionString);
@@ -693,7 +698,8 @@ class StorageServiceSettingsTest extends TestCase
         $invalidUri = 'https://www.invalid_domain';
         $connectionString = "BlobEndpoint=$invalidUri;DefaultEndpointsProtocol=http;AccountName=$expectedName;AccountKey=$expectedKey";
         $expectedMsg = sprintf(Resources::INVALID_CONFIG_URI, $invalidUri);
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectExceptionMessage($expectedMsg);
+        $this->expectException('\RuntimeException');
 
         // Test
         StorageServiceSettings::createFromConnectionString($connectionString);
@@ -735,7 +741,8 @@ class StorageServiceSettingsTest extends TestCase
             $invalidKey,
             implode("\n", $validKeys)
         );
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectExceptionMessage($expectedMsg);
+        $this->expectException('\RuntimeException');
 
         // Test
         StorageServiceSettings::createFromConnectionString($connectionString);

@@ -75,8 +75,7 @@ class FileInputChannelTest extends TestCase
 
         $fileInputChannel->closeInputStream();
 
-        // invalid file
-        $this->setExpectedException(get_class(new ChannelNotAvailableException()));
+        $this->expectException(get_class(new ChannelNotAvailableException()));
         $fileInputChannel->getInputStream(vfsStream::url($rootDirectory.'/'.'fakeinput'));
     }
 }

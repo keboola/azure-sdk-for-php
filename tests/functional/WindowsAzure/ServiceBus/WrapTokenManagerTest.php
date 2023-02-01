@@ -39,7 +39,7 @@ class WrapTokenManagerTest extends ServiceBusRestProxyTestBase
     private $_client;
     const EXPIRES_IN_SEC = 9;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->_contract = new WrapTokenManagerTest_MockWrapRestProxy();

@@ -404,7 +404,7 @@ class CategoryTest extends TestCase
     {
         // Setup
         $actual = new Category();
-        $this->setExpectedException(get_class(new \InvalidArgumentException()));
+        $this->expectException(get_class(new \InvalidArgumentException()));
 
         // Test
         $actual->parseXml(null);

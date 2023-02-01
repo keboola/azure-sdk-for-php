@@ -62,8 +62,7 @@ class ConnectionStringParserTest extends TestCase
 
     private function _parseTestFail($value)
     {
-        // Setup
-        $this->setExpectedException('\RuntimeException');
+        $this->expectException('\RuntimeException');
 
         // Test
         ConnectionStringParser::parseConnectionString('connectionString', $value);

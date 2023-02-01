@@ -157,8 +157,7 @@ class ContentTest extends TestCase
      */
     public function testParseXmlInvalidParameter()
     {
-        // Setup
-        $this->setExpectedException(get_class(new \InvalidArgumentException()));
+        $this->expectException(get_class(new \InvalidArgumentException()));
         $content = new Content();
 
         // Test

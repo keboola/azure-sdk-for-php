@@ -69,7 +69,7 @@ class UrlTest extends TestCase
     {
         // Setup
         $urlString = '';
-        $this->setExpectedException(get_class(new \InvalidArgumentException(Resources::INVALID_URL_MSG)));
+        $this->expectException(get_class(new \InvalidArgumentException(Resources::INVALID_URL_MSG)));
 
         // Test
         new Url($urlString);
@@ -82,7 +82,7 @@ class UrlTest extends TestCase
     {
         // Setup
         $urlString = 1;
-        $this->setExpectedException(get_class(new \InvalidArgumentException(Resources::INVALID_URL_MSG)));
+        $this->expectException(get_class(new \InvalidArgumentException(Resources::INVALID_URL_MSG)));
 
         // Test
         new Url($urlString);
@@ -95,7 +95,7 @@ class UrlTest extends TestCase
     {
         // Setup
         $urlString = 'ww.invalidurl,com';
-        $this->setExpectedException(get_class(new \InvalidArgumentException(Resources::INVALID_URL_MSG)));
+        $this->expectException(get_class(new \InvalidArgumentException(Resources::INVALID_URL_MSG)));
 
         // Test
         new Url($urlString);
@@ -176,7 +176,7 @@ class UrlTest extends TestCase
         $invalidKey = new \DateTime();
         $value = 'ValidValue';
         $url = new Url($urlString);
-        $this->setExpectedException(get_class(new InvalidArgumentTypeException(gettype(''))));
+        $this->expectException(get_class(new InvalidArgumentTypeException(gettype(''))));
 
         // Test
         $url->setQueryVariable($invalidKey, $value);
@@ -192,7 +192,7 @@ class UrlTest extends TestCase
         $invalidKey = new \DateTime();
         $value = 'ValidValue';
         $url = new Url($urlString);
-        $this->setExpectedException(get_class(new \InvalidArgumentException(Resources::NULL_OR_EMPTY_MSG)));
+        $this->expectException(get_class(new \InvalidArgumentException(Resources::NULL_OR_EMPTY_MSG)));
 
         // Test
         $url->setQueryVariable($invalidKey, $value);
@@ -208,7 +208,7 @@ class UrlTest extends TestCase
         $key = 'ValidKey';
         $invalidValue = new \DateTime();
         $url = new Url($urlString);
-        $this->setExpectedException(get_class(new InvalidArgumentTypeException(gettype(''))));
+        $this->expectException(get_class(new InvalidArgumentTypeException(gettype(''))));
 
         // Test
         $url->setQueryVariable($key, $invalidValue);

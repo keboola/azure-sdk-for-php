@@ -45,7 +45,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ServiceBusSettingsTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $property = new \ReflectionProperty('WindowsAzure\Common\Internal\ServiceBusSettings', 'isInitialized');
         $property->setAccessible(true);
@@ -101,8 +101,8 @@ class ServiceBusSettingsTest extends TestCase
         // Setup
         $connectionString = 'SharedSecretIssuer=name;SharedSecretValue=password';
         $expectedMsg = sprintf(Resources::MISSING_CONNECTION_STRING_SETTINGS, $connectionString);
-
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectExceptionMessage($expectedMsg);
+        $this->expectException('\RuntimeException');
 
         // Test
         ServiceBusSettings::createFromConnectionString($connectionString);
@@ -131,7 +131,8 @@ class ServiceBusSettingsTest extends TestCase
             $invalidKey,
             implode("\n", ['Endpoint', 'SharedSecretIssuer', 'SharedSecretValue'])
         );
-        $this->setExpectedException('\RuntimeException', $expectedMsg);
+        $this->expectExceptionMessage($expectedMsg);
+        $this->expectException('\RuntimeException');
 
         // Test
         ServiceBusSettings::createFromConnectionString($connectionString);

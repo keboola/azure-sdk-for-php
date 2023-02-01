@@ -47,8 +47,7 @@ class TokenClaimsTest extends TestCase
      */
     public function testNullTypeShouldThrown()
     {
-        // Setup
-        $this->setExpectedException('InvalidArgumentException');
+        $this->expectException('InvalidArgumentException');
         new TokenClaim(null);
     }
 

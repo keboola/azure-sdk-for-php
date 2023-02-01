@@ -365,7 +365,6 @@ class RoleEnvironment
 
                 $currentRoleInstances = $currentRole->getInstances();
                 $newRoleInstances = $newRole->getInstances();
-
                 $changedRoleSet = array_merge(
                     $changedRoleSet,
                     self::_calculateNewRoleInstanceChanges(
@@ -386,7 +385,6 @@ class RoleEnvironment
 
                 $currentRoleInstances = $currentRole->getInstances();
                 $newRoleInstances = $newRole->getInstances();
-
                 $changedRoleSet = array_merge(
                     $changedRoleSet,
                     self::_calculateCurrentRoleInstanceChanges(
@@ -486,7 +484,6 @@ class RoleEnvironment
                     $currentInstanceEndpoints = $currentInstance
                         ->getInstanceEndpoints();
                     $newInstanceEndpoints = $newInstance->getInstanceEndpoints();
-
                     $changedRoleSet = array_merge(
                         $changedRoleSet,
                         self::_calculateNewRoleInstanceEndpointsChanges(
@@ -584,7 +581,6 @@ class RoleEnvironment
                         ->getInstanceEndpoints();
                     $currentInstanceEndpoints = $currentInstance
                         ->getInstanceEndpoints();
-
                     $changedRoleSet = array_merge(
                         $changedRoleSet,
                         self::_calculateCurrentRoleInstanceEndpointsChanges(

@@ -114,8 +114,9 @@ class BatchRequest
 
         // Encode batch MIME part
         $batchEncoded = $batch->encode($batchId);
-
-        $this->_headers = $batchEncoded['headers'];
+        foreach ($batchEncoded['headers'] as $key => $value) {
+            $this->_headers[$key] = str_replace("\r\n", '', $value);
+        }
         $this->_body = $batchEncoded['body'];
     }
 

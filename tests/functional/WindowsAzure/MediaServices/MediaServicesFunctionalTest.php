@@ -187,7 +187,7 @@ class MediaServicesFunctionalTest extends MediaServicesRestProxyTestBase
         // Assert
         $this->assertEquals($taskBody, $task->getTaskBody());
         $this->assertEquals($configuration, $task->getConfiguration());
-        $this->assertContains(TestResources::MEDIA_SERVICES_PROCESSOR_ID_PREFIX, $task->getMediaProcessorId());
+        $this->assertStringContainsString(TestResources::MEDIA_SERVICES_PROCESSOR_ID_PREFIX, $task->getMediaProcessorId());
 
         $this->assertEquals($name, $job->getName());
 
@@ -317,7 +317,7 @@ class MediaServicesFunctionalTest extends MediaServicesRestProxyTestBase
         // Assert
         $this->assertEquals($taskBody, $task->getTaskBody());
         $this->assertEquals($configuration, $task->getConfiguration());
-        $this->assertContains(TestResources::MEDIA_SERVICES_PROCESSOR_ID_PREFIX, $task->getMediaProcessorId());
+        $this->assertStringContainsString(TestResources::MEDIA_SERVICES_PROCESSOR_ID_PREFIX, $task->getMediaProcessorId());
 
         $this->assertEquals($name, $job->getName());
 
@@ -358,7 +358,7 @@ class MediaServicesFunctionalTest extends MediaServicesRestProxyTestBase
         // Assert
         $this->assertEquals($taskBody, $task->getTaskBody());
         $this->assertEquals($configuration, $task->getConfiguration());
-        $this->assertContains(TestResources::MEDIA_SERVICES_PROCESSOR_ID_PREFIX, $task->getMediaProcessorId());
+        $this->assertStringContainsString(TestResources::MEDIA_SERVICES_PROCESSOR_ID_PREFIX, $task->getMediaProcessorId());
 
         $this->assertEquals($name, $job->getName());
 
@@ -410,7 +410,7 @@ class MediaServicesFunctionalTest extends MediaServicesRestProxyTestBase
         $this->assertCount(1, $outputAssets);
         $this->assertCount(1, $tasks);
         $this->assertEquals($name, $result->getName());
-        $this->assertContains($job->getId(), $result->getId());
+        $this->assertStringContainsString($job->getId(), $result->getId());
     }
 
     /**

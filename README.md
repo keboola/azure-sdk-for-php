@@ -1,3 +1,7 @@
+# DISCLAIMER
+
+Do not use this fork, we are using only Service bus which we are planing to create own implementation and abandon this entirely.
+
 [![Build Status](https://travis-ci.org/Azure/azure-sdk-for-php.svg?branch=master)](https://travis-ci.org/Azure/azure-sdk-for-php)
 [![Latest Stable Version](https://poser.pugx.org/microsoft/windowsazure/v/stable)](https://packagist.org/packages/microsoft/windowsazure)
 
