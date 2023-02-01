@@ -90,7 +90,7 @@ class BatchRequestTest extends TestCase
 
         // Assert
         $this->assertEquals(1, count($resultHeader));
-        $this->assertContains('multipart/mixed', $resultHeader['Content-Type']);
+        $this->assertStringContainsString('multipart/mixed', $resultHeader['Content-Type']);
     }
 
     /**
