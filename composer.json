@@ -18,11 +18,13 @@
         "pear/net_url2": "^2.2",
         "pear/mail_mime": "^1.10",
         "firebase/php-jwt": "^4.0 || ^5.0",
-        "microsoft/azure-storage": "^0.19",
-        "guzzlehttp/guzzle": "^6.2",
+        "microsoft/azure-storage-blob": "*",
+        "microsoft/azure-storage-table": "*",
+        "microsoft/azure-storage-queue": "*",
+        "microsoft/azure-storage-file": "*",
+        "guzzlehttp/guzzle": "^6|^7",
         "laminas/laminas-mime": "^2",
-        "laminas/laminas-mail": "^2",
-        "rector/rector": "^0.15.10"
+        "laminas/laminas-mail": "^2"
     },
     "require-dev": {
         "mikey179/vfsstream": "^1.6",
@@ -30,7 +32,8 @@
         "sebastian/phpcpd": "^2.0",
         "pdepend/pdepend": "^2.2",
         "phpmd/phpmd": "^2.4",
-        "squizlabs/php_codesniffer": "^2.6"
+        "squizlabs/php_codesniffer": "^2.6",
+        "phpstan/phpstan": "^1.9"
     },
     "autoload": {
         "psr-4": {

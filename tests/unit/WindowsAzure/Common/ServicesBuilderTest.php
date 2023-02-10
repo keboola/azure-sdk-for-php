@@ -86,7 +86,6 @@ class ServicesBuilderTest extends ServiceRestProxyTestBase
      * @covers \WindowsAzure\Common\ServicesBuilder::httpClient
      * @covers \WindowsAzure\Common\ServicesBuilder::serializer
      * @covers \WindowsAzure\Common\ServicesBuilder::mimeSerializer
-     * @covers \WindowsAzure\Common\ServicesBuilder::atomSerializer
      * @covers \WindowsAzure\Common\ServicesBuilder::tableAuthenticationScheme
      */
     public function testBuildForTable()
