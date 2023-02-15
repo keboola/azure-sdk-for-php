@@ -23,7 +23,7 @@
  * @link      https://github.com/windowsazure/azure-sdk-for-php
  */
 
-namespace Tests\Unit\WindowsAzure\ServiceRuntime;
+namespace Tests\unit\WindowsAzure\ServiceRuntime;
 
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;

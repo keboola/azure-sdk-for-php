@@ -29,7 +29,6 @@ use WindowsAzure\Common\Internal\Validate;
 use WindowsAzure\Common\Internal\InvalidArgumentTypeException;
 use WindowsAzure\Common\Internal\Resources;
 use WindowsAzure\Common\Internal\Utilities;
-use WindowsAzure\MediaServices\Models\Asset;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -474,39 +473,6 @@ class ValidateTest extends TestCase
 
         // Test
         $result = Validate::isA($value, $type, 'value');
-
-        // Assert
-    }
-
-    /**
-     * @covers \WindowsAzure\Common\Internal\Validate::methodExists
-     */
-    public function testMethodExistsIfExists()
-    {
-
-        // Setup
-        $asset = new Asset(Asset::OPTIONS_NONE);
-        $method = 'getState';
-
-        // Test
-        $result = Validate::methodExists($asset, $method, 'WindowsAzure\MediaServices\Models\Asset');
-
-        // Assert
-        $this->assertTrue($result);
-    }
-
-    /**
-     * @covers \WindowsAzure\Common\Internal\Validate::methodExists
-     */
-    public function testMethodExistsIfNotExists()
-    {
-
-        $this->expectException('\InvalidArgumentException');
-        $asset = new Asset(Asset::OPTIONS_NONE);
-        $method = 'setCreated';
-
-        // Test
-        $result = Validate::methodExists($asset, $method, 'WindowsAzure\MediaServices\Models\Asset');
 
         // Assert
     }

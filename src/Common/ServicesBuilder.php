@@ -27,12 +27,9 @@ namespace WindowsAzure\Common;
 
 use MicrosoftAzure\Storage\Blob\Internal\IBlob;
 use MicrosoftAzure\Storage\Queue\Internal\IQueue;
-use MicrosoftAzure\Storage\Table\Internal\AtomReaderWriter;
-use MicrosoftAzure\Storage\Table\Internal\IAtomReaderWriter;
 use MicrosoftAzure\Storage\Table\Internal\IMimeReaderWriter;
 use MicrosoftAzure\Storage\Table\Internal\ITable;
 use MicrosoftAzure\Storage\Table\Internal\MimeReaderWriter;
-use MicrosoftAzure\Storage\Common\ServicesBuilder as StorageServiceBuilder;
 use WindowsAzure\Common\Internal\Authentication\StorageAuthScheme;
 use WindowsAzure\Common\Internal\Http\IHttpClient;
 use WindowsAzure\Common\Internal\MediaServicesSettings;
@@ -110,16 +107,6 @@ class ServicesBuilder
     }
 
     /**
-     * Gets the Atom serializer used in the REST services construction.
-     *
-     * @return IAtomReaderWriter
-     */
-    protected function atomSerializer()
-    {
-        return new AtomReaderWriter();
-    }
-
-    /**
      * Gets the Queue authentication scheme.
      *
      * @param string $accountName The account name
@@ -174,42 +161,6 @@ class ServicesBuilder
     }
 
     /**
-     * Builds a queue object.
-     *
-     * @param string $connectionString The configuration connection string
-     *
-     * @return IQueue
-     */
-    public function createQueueService($connectionString)
-    {
-        return StorageServiceBuilder::getInstance()->createQueueService($connectionString);
-    }
-
-    /**
-     * Builds a blob object.
-     *
-     * @param string $connectionString The configuration connection string
-     *
-     * @return IBlob
-     */
-    public function createBlobService($connectionString)
-    {
-        return StorageServiceBuilder::getInstance()->createBlobService($connectionString);
-    }
-
-    /**
-     * Builds a table object.
-     *
-     * @param string $connectionString The configuration connection string
-     *
-     * @return ITable
-     */
-    public function createTableService($connectionString)
-    {
-        return StorageServiceBuilder::getInstance()->createTableService($connectionString);
-    }
-
-    /**
      * Builds a Service Bus object.
      *
      * @param string $connectionString The configuration connection string
@@ -239,97 +190,6 @@ class ServicesBuilder
         $filter = $settings->getFilter();
 
         return $serviceBusWrapper->withFilter($filter);
-    }
-
-    /**
-     * Builds a service management object.
-     *
-     * @param string $connectionString The configuration connection string
-     *
-     * @return IServiceManagement
-     */
-    public function createServiceManagementService($connectionString)
-    {
-        $settings = ServiceManagementSettings::createFromConnectionString(
-            $connectionString
-        );
-
-        $certificatePath = $settings->getCertificatePath();
-        $httpClient = new HttpClient($certificatePath);
-        $serializer = $this->serializer();
-        $uri = Utilities::tryAddUrlScheme(
-            $settings->getEndpointUri(),
-            Resources::HTTPS_SCHEME
-        );
-
-        $serviceManagementWrapper = new ServiceManagementRestProxy(
-            $httpClient,
-            $settings->getSubscriptionId(),
-            $uri,
-            $serializer
-        );
-
-        // Adding headers filter
-        $headers = [];
-
-        $headers[Resources::X_MS_VERSION] = Resources::SM_API_LATEST_VERSION;
-
-        $headersFilter = new HeadersFilter($headers);
-        $serviceManagementWrapper = $serviceManagementWrapper->withFilter(
-            $headersFilter
-        );
-
-        return $serviceManagementWrapper;
-    }
-
-    /**
-     * Builds a media services object.
-     *
-     * @param MediaServicesSettings $settings The media services configuration settings
-     *
-     * @return MediaServicesRestProxy
-     */
-    public function createMediaServicesService(MediaServicesSettings $settings)
-    {
-        $httpClient = new HttpClient();
-        $serializer = $this->serializer();
-        $uri = Utilities::tryAddUrlScheme(
-            $settings->getEndpointUri(),
-            Resources::HTTPS_SCHEME
-        );
-
-        $mediaServicesWrapper = new MediaServicesRestProxy(
-            $httpClient,
-            $uri,
-            Resources::EMPTY_STRING,
-            $serializer
-        );
-
-        // Adding headers filter
-        $xMSVersion = Resources::MEDIA_SERVICES_API_LATEST_VERSION;
-        $dataVersion = Resources::MEDIA_SERVICES_DATA_SERVICE_VERSION_VALUE;
-        $dataMaxVersion = Resources::MEDIA_SERVICES_MAX_DATA_SERVICE_VERSION_VALUE;
-        $accept = Resources::ACCEPT_HEADER_VALUE;
-        $contentType = Resources::ATOM_ENTRY_CONTENT_TYPE;
-
-        $headers = [
-            Resources::X_MS_VERSION => $xMSVersion,
-            Resources::DATA_SERVICE_VERSION => $dataVersion,
-            Resources::MAX_DATA_SERVICE_VERSION => $dataMaxVersion,
-            Resources::ACCEPT_HEADER => $accept,
-            Resources::CONTENT_TYPE => $contentType,
-        ];
-
-        $headersFilter = new HeadersFilter($headers);
-        $mediaServicesWrapper = $mediaServicesWrapper->withFilter($headersFilter);
-
-        // Adding Azure Active Directory Authentication filter
-        $authenticationFilter = new AuthenticationFilter($settings->getTokenProvider());
-        $mediaServicesWrapper = $mediaServicesWrapper->withFilter(
-            $authenticationFilter
-        );
-
-        return $mediaServicesWrapper;
     }
 
     /**
