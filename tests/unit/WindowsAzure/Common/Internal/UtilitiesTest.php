@@ -30,7 +30,6 @@ use WindowsAzure\Common\Internal\Resources;
 use Tests\Framework\TestResources;
 use WindowsAzure\Common\Models\ServiceProperties;
 use WindowsAzure\Common\Internal\Serialization\XmlSerializer;
-use WindowsAzure\MediaServices\Models\Asset;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -536,44 +535,6 @@ class UtilitiesTest extends TestCase
 
         // Assert
         $this->assertEquals($expected, $actual);
-    }
-
-    /**
-     * @covers \WindowsAzure\Common\Internal\Utilities::getEntityId
-     */
-    public function testGetEntityIdWithString()
-    {
-
-        // Setup
-        $id = 'kjgdfg57';
-
-        // Test
-        $result = Utilities::getEntityId($id, 'WindowsAzure\MediaServices\Models\Asset');
-
-        //Assert
-        $this->assertEquals($id, $result);
-    }
-
-    /**
-     * @covers \WindowsAzure\Common\Internal\Utilities::getEntityId
-     */
-    public function testGetEntityIdWithObject()
-    {
-
-        // Setup
-        $idKey = 'Id';
-        $optionKey = 'Options';
-        $assetArray = [
-                $idKey => 'kjgdfg57',
-                $optionKey => Asset::OPTIONS_NONE,
-        ];
-        $value = Asset::createFromOptions($assetArray);
-
-        // Test
-        $result = Utilities::getEntityId($value, 'WindowsAzure\MediaServices\Models\Asset');
-
-        //Assert
-        $this->assertEquals($assetArray[$idKey], $result);
     }
 
     /**

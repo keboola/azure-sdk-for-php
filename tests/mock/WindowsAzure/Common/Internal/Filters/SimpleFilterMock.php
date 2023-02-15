@@ -68,6 +68,6 @@ class SimpleFilterMock implements IServiceFilter
     public function handleResponse(IHttpClient $request, ResponseInterface $response)
     {
         $newData = ((string)$response->getBody()).$this->_data;
-        return $response->withBody(\GuzzleHttp\Psr7\stream_for($newData));
+        return $response->withBody(\GuzzleHttp\Psr7\Utils::streamFor($newData));
     }
 }
