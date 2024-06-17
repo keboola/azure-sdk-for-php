@@ -113,6 +113,11 @@ class ServiceBusSettings extends ServiceSettings {
     protected static $isInitialized = false;
 
     /**
+     * @var string
+     */
+    protected $_filter;
+
+    /**
      * Holds the expected setting keys.
      *
      * @var array
