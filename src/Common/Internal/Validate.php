@@ -395,7 +395,7 @@ class Validate
             new \DateTime($value);
 
             return true;
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             throw new \InvalidArgumentException(
                 sprintf(
                     Resources::ERROR_INVALID_DATE_STRING,
